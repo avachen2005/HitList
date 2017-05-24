@@ -24,11 +24,25 @@ class ViewController: UIViewController {
 
     @IBAction func addName(_ sender: UIBarButtonItem) {
         
-        
         let alert = UIAlertController(title: "New Name",
                                       message: "Add a new name",
                                       preferredStyle: .alert)
         
+        let saveAction = UIAlertAction(title: "Save", style: .default) {
+            [unowned self] action in
+            guard let textField = alert.textFields?.first,
+                let nameToSave = textField.text else {
+                    return
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+        
+        alert.addTextField()
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
 }
 
